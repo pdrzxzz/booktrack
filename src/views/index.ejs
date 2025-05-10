@@ -1,21 +1,65 @@
 <!-- views/index.ejs -->
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Book Track</title>
 </head>
+
 <body>
   <h1>Book Track</h1>
 
-  <form action="/create" method="GET">
+  <form action="/users/create" method="GET">
+    <label for="user_name">User name:</label>
+    <input type="text" name="user_name" id="user_name" required>
+    <label for="user_email">Email:</label>
+    <input type="text" name="user_email" id="user_email" required>
+    <button type="submit">Register</button>
+  </form>
+  <form action="/books/create" method="GET">
+    <label for="book_title">Book Title:</label>
+    <input type="text" name="book_title" id="book_title" required>
+    <label for="book_author">Book Author (optional):</label>
+    <input type="text" name="book_author" id="book_author">
+    <legend>Book Status:</legend>
+    <input type="radio" id="want_to_read" name="book_status" value="want_to_read" required checked />
+    <label for="want_to_read">Want to read</label>
+    <input type="radio" id="reading" name="book_status" value="reading" />
+    <label for="reading">Reading</label>
+    <input type="radio" id="have_read" name="book_status" value="have_read" />
+    <label for="have_read">Have read</label>
     <button type="submit">Create Book</button>
   </form>
 
+  <h3>All users</h3>
+  <ul>
+    <% users.forEach(user=> { %>
+      <li>
+        <%= user.name %> (<%= user.id %>)
+            <form action="/users/login" method="GET">
+              <button type="submit">Login</button>
+            </form>
+            <form action="/users/delete" method="GET">
+              <button type="submit">Delete User</button>
+            </form>
+      </li>
+      <% }) %>
+  </ul>
+
   <h3>All books from all users</h3>
   <ul>
-    <% results.forEach(book => { %>
-      <li><%= book.title %></li>
-    <% }) %>
+    <% books.forEach(book=> { %>
+      <li>
+        <%= book.title %> (<%= book.user_id %>)
+            <form action="/books/edit" method="GET">
+              <button type="submit">Edit Book</button>
+            </form>
+            <form action="/books/delete" method="GET">
+              <button type="submit">Delete Book</button>
+            </form>
+      </li>
+      <% }) %>
   </ul>
 </body>
+
 </html>

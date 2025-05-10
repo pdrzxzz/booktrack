@@ -7,8 +7,11 @@ CREATE TABLE books (
 	rating INT,
     CONSTRAINT valid_rating_range CHECK (rating BETWEEN 1 AND 5),
     CONSTRAINT read_to_rate CHECK ((status != 'Have read' AND rating is NULL) OR (status = 'Have read')),
-    conclusion_time DATETIME
+    conclusion_time DATETIME,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 SELECT * FROM books;
 
+DROP TABLE books;

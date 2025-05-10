@@ -9,7 +9,9 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 const indexRoutes = require('./routes/index')
+const booksRoutes = require('./routes/books')
 app.use('/', indexRoutes)
+app.use('/', booksRoutes)
 
 // // if any other route do not match, throw error
 // app.all('*', (req, res, next) => {

@@ -3,16 +3,15 @@ const express = require('express');
 // start server
 const app = express();
 //path to use __dirname and search views dir from app.js exec
-const path = require('path'); 
+const path = require('path');
 
-// app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 const indexRoutes = require('./routes/index')
 app.use('/', indexRoutes)
 
-const connection = require('./db.js')
-
-//if any other route do not match, throw error
+// // if any other route do not match, throw error
 // app.all('*', (req, res, next) => {
 //     next(new ExpressError('Page Not Found', 404))
 // })

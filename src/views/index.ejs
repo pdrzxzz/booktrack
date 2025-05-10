@@ -1,0 +1,21 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Track</title>
+</head>
+<body>
+  <h1>Book Track</h1>
+
+  <form action="/create" method="GET">
+    <button type="submit">Create Book</button>
+  </form>
+
+  <h3>All books from all users</h3>
+  <ul>
+    <% results.forEach(book => { %>
+      <li><%= book.title %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>

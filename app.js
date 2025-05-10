@@ -10,6 +10,8 @@ const path = require('path');
 const indexRoutes = require('./routes/index')
 app.use('/', indexRoutes)
 
+const connection = require('./db.js')
+
 //if any other route do not match, throw error
 // app.all('*', (req, res, next) => {
 //     next(new ExpressError('Page Not Found', 404))
